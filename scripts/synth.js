@@ -160,14 +160,14 @@ app.synth = (function() {
 
 	//set up the synth object
 	Synth.prototype.setUp = function(wavetypeControl, filterControl, delayControl, feedbackControl){
-		
+
 		//initialize object variables
-		this.audioContext = new webkitAudioContext();
+    this.audioContext = new AudioContext();
 
 		this.nodes.filter = this.audioContext.createBiquadFilter();
-		this.nodes.volume = this.audioContext.createGainNode();
-		this.nodes.delay = this.audioContext.createDelayNode();
-		this.nodes.feedbackGain = this.audioContext.createGainNode();
+		this.nodes.volume = this.audioContext.createGain();
+		this.nodes.delay = this.audioContext.createDelay();
+		this.nodes.feedbackGain = this.audioContext.createGain();
 
 
 
@@ -291,7 +291,7 @@ app.synth = (function() {
 		}else{
 			osc.noteOn(0);
 		}
-		
+
 
 		//return the osc so we can stop it later
 		return osc;
